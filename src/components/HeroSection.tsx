@@ -31,8 +31,8 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section id="beranda" className="relative pt-8 pb-16 overflow-hidden">
-      {/* Background soft ambient blobs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-blue-100/40 via-orange-50/20 to-transparent -z-10 pointer-events-none rounded-b-[48px]" />
+      {/* Background soft ambient glow (Full-bleed edge-to-edge, bebas pembatas di semua skala zoom) */}
+      <div className="absolute inset-x-0 top-0 h-[480px] bg-gradient-to-b from-blue-100/35 via-orange-50/15 to-transparent -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top pill badge */}
