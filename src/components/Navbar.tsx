@@ -172,7 +172,7 @@ export const Navbar: React.FC = () => {
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Sesi Login Aktif"></span>
                   </button>
                   <button
-                    onClick={logoutAdmin}
+                    onClick={() => logoutAdmin()}
                     className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-white rounded-lg transition cursor-pointer"
                     title="Keluar dari akun Guru BK (Logout)"
                   >
@@ -192,7 +192,7 @@ export const Navbar: React.FC = () => {
                     <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" title="Sesi Dev Aktif"></span>
                   </button>
                   <button
-                    onClick={logoutDev}
+                    onClick={() => logoutDev()}
                     className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-white rounded-lg transition cursor-pointer"
                     title="Keluar Konsol Dev"
                   >
@@ -226,8 +226,8 @@ export const Navbar: React.FC = () => {
                 Lihat Web Publik
               </button>
               <button
-                onClick={logoutAdmin}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition"
+                onClick={() => logoutAdmin()}
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 <span>Keluar</span>
@@ -242,13 +242,13 @@ export const Navbar: React.FC = () => {
               </span>
               <button
                 onClick={() => setViewMode('public')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition"
+                className="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition cursor-pointer"
               >
                 Lihat Web Publik
               </button>
               <button
-                onClick={logoutDev}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition"
+                onClick={() => logoutDev()}
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 <span>Keluar Dev</span>

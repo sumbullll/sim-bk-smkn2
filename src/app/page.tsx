@@ -15,6 +15,7 @@ import { TrackingModal } from '../components/modals/TrackingModal';
 import { AppointmentModal } from '../components/modals/AppointmentModal';
 import { TeacherDetailModal } from '../components/modals/TeacherDetailModal';
 import { AuthModal } from '../components/modals/AuthModal';
+import { LogoutConfirmModal } from '../components/modals/LogoutConfirmModal';
 
 // Admin & Developer Views
 import { AdminDashboard } from '../components/admin/AdminDashboard';
@@ -73,7 +74,7 @@ export default function HomePage() {
               <span><span className="hidden sm:inline">Kembali ke </span>Dashboard</span>
             </button>
             <button
-              onClick={adminAuth.isLoggedIn ? logoutAdmin : logoutDev}
+              onClick={() => (adminAuth.isLoggedIn ? logoutAdmin() : logoutDev())}
               className="px-2.5 py-1.5 rounded-full bg-white/10 hover:bg-rose-600 text-slate-300 hover:text-white text-xs font-semibold transition cursor-pointer"
               title="Keluar dari akun (Logout)"
             >
@@ -90,6 +91,7 @@ export default function HomePage() {
       <AppointmentModal />
       <TeacherDetailModal />
       <AuthModal />
+      <LogoutConfirmModal />
     </div>
   );
 }

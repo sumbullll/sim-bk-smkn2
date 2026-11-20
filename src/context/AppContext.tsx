@@ -90,9 +90,14 @@ interface AppContextType {
 
   // Auth & View
   loginAdmin: (guruId: string) => void;
-  logoutAdmin: () => void;
+  logoutAdmin: (force?: boolean) => void;
   loginDev: () => void;
-  logoutDev: () => void;
+  logoutDev: (force?: boolean) => void;
+  cancelLogout: () => void;
+  logoutModal: {
+    isOpen: boolean;
+    target: 'admin' | 'developer' | null;
+  };
   setViewMode: (mode: ViewMode) => void;
 
   // Modal Control
@@ -162,6 +167,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedTeacherForDetail, setSelectedTeacherForDetail] = useState<Teacher | undefined>(undefined);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalTab, setAuthModalTab] = useState<'admin' | 'developer'>('admin');
+  const [logoutModal, setLogoutModal] = useState<{
+    isOpen: boolean;
+    target: 'admin' | 'developer' | null;
+  }>({
+    isOpen: false,
+    target: null,
+  });
 
   // Sync with Supabase Cloud
   const syncWithCloud = useCallback(async () => {
@@ -569,9 +581,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setViewMode('admin');
   };
 
-  const logoutAdmin = () => {
+  const logoutAdmin = (force = false) => {
+    if (force !== true) {
+      setLogoutModal({ isOpen: true, target: 'admin' });
+      return;
+    }
     setAdminAuth({ isLoggedIn: false });
     setViewMode('public');
+    setLogoutModal({ isOpen: false, target: null });
   };
 
   const loginDev = () => {
@@ -579,9 +596,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setViewMode('developer');
   };
 
-  const logoutDev = () => {
+  const logoutDev = (force = false) => {
+    if (force !== true) {
+      setLogoutModal({ isOpen: true, target: 'developer' });
+      return;
+    }
     setDevAuth({ isDev: false });
     setViewMode('public');
+    setLogoutModal({ isOpen: false, target: null });
+  };
+
+  const cancelLogout = () => {
+    setLogoutModal({ isOpen: false, target: null });
   };
 
   // Modal helpers
@@ -625,6 +651,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         logoutAdmin,
         loginDev,
         logoutDev,
+        logoutModal,
+        cancelLogout,
         setViewMode,
         isReportModalOpen,
         setIsReportModalOpen,

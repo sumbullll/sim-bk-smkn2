@@ -186,7 +186,7 @@ export const DeveloperConsole: React.FC = () => {
               Lihat Web Publik
             </button>
             <button
-              onClick={logoutDev}
+              onClick={() => logoutDev()}
               className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition cursor-pointer"
             >
               <LogOut className="w-3.5 h-3.5" />
