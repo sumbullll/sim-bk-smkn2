@@ -443,7 +443,7 @@ export const EditProfilePhotoModal: React.FC<EditProfilePhotoModalProps> = ({
                 <div>
                   <div className="text-xs font-bold text-slate-700">PIN Login Ruang Kerja Anda</div>
                   <div className="text-[11px] text-slate-500">
-                    Ubah PIN pribadi jika diperlukan (default: 12345)
+                    Ubah PIN pribadi jika diperlukan
                   </div>
                 </div>
               </div>
@@ -451,7 +451,7 @@ export const EditProfilePhotoModal: React.FC<EditProfilePhotoModalProps> = ({
                 type="text"
                 value={pin}
                 onChange={e => setPin(e.target.value)}
-                placeholder="12345"
+                placeholder="PIN Baru"
                 className="w-full sm:w-32 px-3 py-2 text-xs font-mono font-bold rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 text-center"
               />
             </div>

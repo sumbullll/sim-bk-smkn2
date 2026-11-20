@@ -31,8 +31,8 @@ export const AuthModal: React.FC = () => {
   } = useApp();
 
   const [selectedGuruId, setSelectedGuruId] = useState(teachers[0]?.id || '');
-  const [guruPin, setGuruPin] = useState('12345');
-  const [devPassword, setDevPassword] = useState('12345');
+  const [guruPin, setGuruPin] = useState('');
+  const [devPassword, setDevPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
   if (!isAuthModalOpen) return null;
@@ -50,7 +50,7 @@ export const AuthModal: React.FC = () => {
     const expectedPin = teacher?.pin || '12345';
 
     if (guruPin !== expectedPin && guruPin !== '12345') {
-      setErrorMsg('PIN yang Anda masukkan salah (PIN default: 12345).');
+      setErrorMsg('PIN yang Anda masukkan salah. Silakan periksa kembali.');
       return;
     }
 
@@ -66,7 +66,7 @@ export const AuthModal: React.FC = () => {
       loginDev();
       setIsAuthModalOpen(false);
     } else {
-      setErrorMsg('Kata sandi developer salah. Gunakan sandi default: 12345');
+      setErrorMsg('Kata sandi developer salah. Silakan periksa kembali.');
     }
   };
 
@@ -187,7 +187,7 @@ export const AuthModal: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  PIN Guru BK (Default: 12345)
+                  PIN Guru BK
                 </label>
                 <div className="relative">
                   <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -195,7 +195,7 @@ export const AuthModal: React.FC = () => {
                     type="password"
                     value={guruPin}
                     onChange={e => setGuruPin(e.target.value)}
-                    placeholder="Masukkan PIN (12345)"
+                    placeholder="Masukkan 5 digit PIN"
                     className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-navy-600 bg-white"
                   />
                 </div>
@@ -253,7 +253,7 @@ export const AuthModal: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Kata Sandi Developer / Superadmin (Default: 12345)
+                  Kata Sandi Developer / Superadmin
                 </label>
                 <div className="relative">
                   <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -261,7 +261,7 @@ export const AuthModal: React.FC = () => {
                     type="password"
                     value={devPassword}
                     onChange={e => setDevPassword(e.target.value)}
-                    placeholder="Masukkan kata sandi (12345)"
+                    placeholder="Masukkan kata sandi pengembang"
                     className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
                   />
                 </div>

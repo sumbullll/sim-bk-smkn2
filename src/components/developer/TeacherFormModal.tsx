@@ -158,13 +158,13 @@ export const TeacherFormModal: React.FC<TeacherFormModalProps> = ({
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                PIN Akses Guru (Default: 12345)
+                PIN Akses Guru
               </label>
               <input
                 type="text"
                 value={pin}
                 onChange={e => setPin(e.target.value)}
-                placeholder="12345"
+                placeholder="Masukkan 5 digit PIN"
                 className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-600 font-mono"
               />
             </div>
