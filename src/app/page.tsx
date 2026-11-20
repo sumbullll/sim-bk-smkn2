@@ -55,19 +55,22 @@ export default function HomePage() {
 
       {/* Floating Bottom Preview Banner when logged in while browsing public web */}
       {viewMode === 'public' && (adminAuth.isLoggedIn || devAuth.isDev) && (
-        <aside aria-label="Status Sesi Login" className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 bg-navy-900/95 hover:bg-navy-900 text-white backdrop-blur-md px-4 sm:px-6 py-2.5 rounded-full shadow-2xl border border-navy-700/80 flex items-center gap-3 sm:gap-4 transition-all">
-          <div className="flex items-center gap-2">
+        <aside
+          aria-label="Status Sesi Login"
+          className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-navy-900/95 hover:bg-navy-900 text-white backdrop-blur-md px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-2xl border border-navy-700/80 flex items-center justify-between sm:justify-start gap-2.5 sm:gap-4 transition-all w-[94vw] sm:w-auto max-w-lg"
+        >
+          <div className="flex items-center gap-2 min-w-0">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-            <span className="text-xs text-slate-200">
-              Pratinjau Publik • <strong className="text-white">{adminAuth.isLoggedIn && currentTeacher ? currentTeacher.nama.split(',')[0] : 'Developer'}</strong>
+            <span className="text-[11px] sm:text-xs text-slate-200 truncate">
+              Pratinjau • <strong className="text-white">{adminAuth.isLoggedIn && currentTeacher ? currentTeacher.nama.split(',')[0] : 'Developer'}</strong>
             </span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 shrink-0">
             <button
               onClick={() => setViewMode(adminAuth.isLoggedIn ? 'admin' : 'developer')}
-              className="px-3.5 py-1.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5 cursor-pointer"
+              className="px-3 sm:px-3.5 py-1.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5 cursor-pointer"
             >
-              <span>Kembali ke Dashboard</span>
+              <span><span className="hidden sm:inline">Kembali ke </span>Dashboard</span>
             </button>
             <button
               onClick={adminAuth.isLoggedIn ? logoutAdmin : logoutDev}
