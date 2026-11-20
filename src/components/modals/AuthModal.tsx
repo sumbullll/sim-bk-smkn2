@@ -24,6 +24,10 @@ export const AuthModal: React.FC = () => {
     teachers,
     loginAdmin,
     loginDev,
+    adminAuth,
+    devAuth,
+    currentTeacher,
+    setViewMode,
   } = useApp();
 
   const [selectedGuruId, setSelectedGuruId] = useState(teachers[0]?.id || '');
@@ -132,6 +136,38 @@ export const AuthModal: React.FC = () => {
           {authModalTab === 'admin' ? (
             /* Tab 1: Guru BK Login */
             <form onSubmit={handleAdminLogin} className="space-y-4">
+              {/* Active Session Notice */}
+              {adminAuth.isLoggedIn && currentTeacher && (
+                <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold flex items-center gap-1.5 text-emerald-800">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      Sesi Login Masih Aktif
+                    </span>
+                    <span className="text-[10px] bg-emerald-200/80 text-emerald-900 px-2 py-0.5 rounded-full font-bold">
+                      Tersimpan
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-emerald-700">
+                    Anda sudah masuk sebagai <strong>{formatTeacherName(currentTeacher)}</strong>.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setViewMode('admin');
+                      setIsAuthModalOpen(false);
+                    }}
+                    className="w-full py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>Masuk ke Ruang Kerja Langsung (1-Klik)</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <div className="text-[10px] text-center text-slate-500 pt-1">
+                    Atau gunakan formulir di bawah jika ingin beralih ke guru lain:
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Pilih Akun Guru BK Anda
@@ -183,6 +219,38 @@ export const AuthModal: React.FC = () => {
           ) : (
             /* Tab 2: Developer Mode Login */
             <form onSubmit={handleDevLogin} className="space-y-4">
+              {/* Active Developer Session Notice */}
+              {devAuth.isDev && (
+                <div className="p-3.5 rounded-2xl bg-purple-50 border border-purple-200 text-xs text-purple-900 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold flex items-center gap-1.5 text-purple-800">
+                      <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                      Sesi Developer Masih Aktif
+                    </span>
+                    <span className="text-[10px] bg-purple-200/80 text-purple-900 px-2 py-0.5 rounded-full font-bold">
+                      Tersimpan
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-purple-700">
+                    Sesi pengembang Anda masih tersimpan di peramban ini.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setViewMode('developer');
+                      setIsAuthModalOpen(false);
+                    }}
+                    className="w-full py-2.5 px-3 rounded-xl bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>Masuk ke Konsol Dev Langsung (1-Klik)</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <div className="text-[10px] text-center text-slate-500 pt-1">
+                    Atau ketikkan sandi baru di bawah untuk refresh otentikasi:
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Kata Sandi Developer / Superadmin (Default: 12345)

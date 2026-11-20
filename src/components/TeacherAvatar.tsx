@@ -7,7 +7,7 @@ interface TeacherAvatarProps {
   src?: string;
   name: string;
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 const GRADIENTS = [
@@ -39,6 +39,7 @@ export const TeacherAvatar: React.FC<TeacherAvatarProps> = ({
   const gradient = GRADIENTS[charSum % GRADIENTS.length];
 
   const sizeClasses = {
+    xs: 'w-7 h-7 text-[10px]',
     sm: 'w-10 h-10 text-xs',
     md: 'w-16 h-16 text-base',
     lg: 'w-24 h-24 text-xl',

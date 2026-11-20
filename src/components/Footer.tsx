@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { schoolSettings, openAuthModal } = useApp();
+  const { schoolSettings, openAuthModal, adminAuth, devAuth, setViewMode } = useApp();
 
   return (
     <footer className="bg-navy-950 text-slate-300 pt-16 pb-12 border-t border-navy-900">
@@ -123,19 +123,19 @@ export const Footer: React.FC = () => {
               </li>
               <li className="pt-2">
                 <button
-                  onClick={() => openAuthModal('admin')}
+                  onClick={() => (adminAuth.isLoggedIn ? setViewMode('admin') : openAuthModal('admin'))}
                   className="inline-flex items-center gap-1.5 text-xs text-blue-300 hover:text-blue-100 font-semibold cursor-pointer underline underline-offset-4"
                 >
-                  <span>Workstation Guru BK</span>
+                  <span>Workstation Guru BK {adminAuth.isLoggedIn ? '(Sesi Aktif - 1 Klik)' : ''}</span>
                   <ExternalLink className="w-3 h-3" />
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => openAuthModal('developer')}
+                  onClick={() => (devAuth.isDev ? setViewMode('developer') : openAuthModal('developer'))}
                   className="inline-flex items-center gap-1.5 text-[11px] text-slate-500 hover:text-slate-300 font-mono cursor-pointer"
                 >
-                  <span>Developer / Superadmin Console</span>
+                  <span>Developer / Superadmin Console {devAuth.isDev ? '(Sesi Aktif - 1 Klik)' : ''}</span>
                 </button>
               </li>
             </ul>
