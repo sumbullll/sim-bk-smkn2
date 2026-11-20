@@ -62,7 +62,7 @@ export const AuthModal: React.FC = () => {
     e.preventDefault();
     setErrorMsg('');
 
-    if (devPassword === '12345' || devPassword === 'admin123' || devPassword === 'devsmk') {
+    if (devPassword === 'admin123' || devPassword === 'devsmk') {
       loginDev();
       setIsAuthModalOpen(false);
     } else {
